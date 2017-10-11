@@ -1,0 +1,929 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>图书-图灵社区</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="/staticitr/img/favicon.png">
+
+    
+    <link href="/kendo/css?v=W-IyudFsjvr8DmczNaEtVDAWVVWkoAYhOkQl_7kkbqc1" rel="stylesheet"/>
+
+    <link href="/ituring/css?v=1FvBDzoX9ABj_s-YRXtEDHfLQWqLB4sk2tBMjZoSKVA1" rel="stylesheet"/>
+
+
+    <script src="/ituring/js?v=20qhuba-JjWpkUZ6WyvMzCPWFrB_TrAdbOFot0ehZMw1"></script>
+
+    <script src="/bundles/kendo?v=Ep7XxB9YaQz_sUggoppp1nXkei68VOq0u3sLcOISbsE1"></script>
+
+    <!--[if lt IE 9]>
+        <script src="/staticitr/lib/bootstrap/3.3.7/ie/html5shiv.min.js"></script>
+        <script src="/staticitr/lib/bootstrap/3.3.7/ie/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="layout-head">
+                                <div class="container">
+                                    <div id="navbar-toggles" class="navbar-toggles">
+                                        <a href="#nav-main" class="toggle-main ryi-nav-sandwich"></a>
+                                    </div>
+                                    <a id="head-navbar-toggle" href="#" class="head-navbar-toggle"></a>
+                                    <div class="head-logo"><a href="/">图灵社区</a></div>
+                                    <ul id="head-nav-primary" class="head-nav">
+                                        <li class="head-nav-home"><a href="/">首页</a></li>
+                                        <li><a href="/book">图书</a></li>
+                                        <li><a href="/article">文章</a></li>
+                                        <li class="head-search">
+                                            <form action="/search">
+                                                <input type="search" name="q" placeholder="技术改变世界 阅读塑造人生" class="key">
+                                                <button class="go btn btn-link"><span class="fa fa-search"></span></button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                    <ul id="head-nav-secondary" class="head-nav">
+                                        <li class="head-compose"><a href="http://account.ituring.com.cn/register?returnUrl=http%3a%2f%2fwww.ituring.com.cn%2fbook%3ftab%3dbook%26sort%3dhot%26page%3d51%26user-agent%3dMozilla%252F5.0%2b%2528Macintosh%253B%2bIntel%2bMac%2bOS%2bX%2b10_12_6%2529%2bAppleWebKit%252F604.1.38%2b%2528KHTML%252C%2blike%2bGecko%2529%2bVersion%252F11.0%2bSafari%252F604.1.38">新会员注册</a></li>
+                                        <li class="head-compose"><a href="http://account.ituring.com.cn/log-in?returnUrl=http%3a%2f%2fwww.ituring.com.cn%2fbook%3ftab%3dbook%26sort%3dhot%26page%3d51%26user-agent%3dMozilla%252F5.0%2b%2528Macintosh%253B%2bIntel%2bMac%2bOS%2bX%2b10_12_6%2529%2bAppleWebKit%252F604.1.38%2b%2528KHTML%252C%2blike%2bGecko%2529%2bVersion%252F11.0%2bSafari%252F604.1.38">登录</a></li>
+                                        <div class="navbar-close"><a href="#nav-user" class="fa fa-angle-up"></a></div>
+                                    </ul>
+                                </div>
+    </div>
+
+
+    
+
+
+<div class="container">
+
+    
+    <div class="editable-area">
+        <div class="block hot-tags hidden-xs hidden-xm">
+    <span class="tags">
+        <a href="/tag/49" tagid="49" class="post-tag">Android</a>
+        <a href="/tag/11" tagid="11" class="post-tag">Python</a>
+        <a href="/tag/6" tagid="6" class="post-tag">JavaScript</a>
+        <a href="/tag/238" tagid="238" class="post-tag">HTML5</a>
+        <a href="/tag/25" tagid="25" class="post-tag">Linux</a>
+        <a href="/tag/35" tagid="35" class="post-tag">C#</a>
+        <a href="/tag/367" tagid="367" class="post-tag">iOS</a>
+        <a href="/tag/283" tagid="283" class="post-tag">jQuery</a>
+        <a href="/tag/90" tagid="90" class="post-tag">数据库</a>
+        <a href="/tag/69" tagid="69" class="post-tag">机器学习</a>
+    </span>
+</div>
+    </div>
+
+
+
+	<div class="row g-50" id="tab-book">
+
+		<div class="col-md-9 col-sm-9 main">
+			<div class="nav-tab-primary">
+				<ul class="nav nav-tabs">
+                        <li >
+                            <a href="/book?tab=book&amp;sort=new">最新</a>
+                        </li>
+                        <li   class="active"    >
+                            <a href="/book?tab=book&amp;sort=hot">热门</a>
+                        </li>
+                        <li >
+                            <a href="/book?tab=book&amp;sort=vote">推荐</a>
+                        </li>
+				    <li class="pull-right"><a href="/search/advanced">图书高级搜索</a></li>
+				</ul>
+			</div>
+
+			<div class="g-main">
+				<div class="block-books block-books-grid">
+					<ul>
+							<li>
+								<div class="book-img">
+    <a href="/book/1644" title="龙卷风暴：在高速成长市场中获得成功（修订珍藏版）">
+        <img src="http://file.ituring.com.cn/SmallCover/010021818ee552b06db1" alt="龙卷风暴：在高速成长市场中获得成功（修订珍藏版）">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1644" title="龙卷风暴：在高速成长市场中获得成功（修订珍藏版）">龙卷风暴：在高速成长市场中获得成功（修订珍藏版）</a></h4>
+    <div class="author">
+            </div>
+    <p class="intro">高科技产品在跨越鸿沟之后，消费者的从众效应导致市场高速成长，于是产生了风暴。本书就介绍了高科技企业如何在风暴阶...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1645" title="断层地带：新经济时代的股东权益管理（修订珍藏版）">
+        <img src="http://file.ituring.com.cn/SmallCover/0100132a3c9455c95a28" alt="断层地带：新经济时代的股东权益管理（修订珍藏版）">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1645" title="断层地带：新经济时代的股东权益管理（修订珍藏版）">断层地带：新经济时代的股东权益管理（修订珍藏版）</a></h4>
+    <div class="author">
+            </div>
+    <p class="intro">高科技企业在跨越鸿沟和龙卷风暴的阶段生存下来后，新的突破性创新何时出现变得不可预测，企业进入了一个不稳固状态，...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1647" title="Python黑客攻防入门">
+        <img src="http://file.ituring.com.cn/SmallCover/01002bb02d90d7a72b9b" alt="Python黑客攻防入门">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1647" title="Python黑客攻防入门">Python黑客攻防入门</a></h4>
+    <div class="author">
+            </div>
+    <p class="intro">全书内容划分为基础知识、各种黑客攻击技术、黑客攻击学习方法三部分。基础知识部分主要介绍各种黑客攻击技术、计算机...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1648" title="赌场里的大数据：个人数据的商业化与传统隐私概念的终结">
+        <img src="http://file.ituring.com.cn/SmallCover/0100a42b023272b9563f" alt="赌场里的大数据：个人数据的商业化与传统隐私概念的终结">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1648" title="赌场里的大数据：个人数据的商业化与传统隐私概念的终结">赌场里的大数据：个人数据的商业化与传统隐私概念的终结</a></h4>
+    <div class="author">
+            </div>
+    <p class="intro">从豪华赌场到直邮营销，从警方存档的嫌犯照片到自动取款机的提款信息，本书通过一个个生动的大数据实例向我们揭示了消...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1689" title="追寻确定性：信息架构简史">
+        <img src="http://file.ituring.com.cn/SmallCover/0100c0fc04a3cb95be43" alt="追寻确定性：信息架构简史">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1689" title="追寻确定性：信息架构简史">追寻确定性：信息架构简史</a></h4>
+    <div class="author">
+            </div>
+    <p class="intro">人类世界的信息规模和复杂度迅速增长，数据科学家和工程师必须寻找利用这些信息的全新手段。我们熟悉的命令与控制方式...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1690" title="物联网产品设计">
+        <img src="http://file.ituring.com.cn/SmallCover/010036736360b1b013d2" alt="物联网产品设计">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1690" title="物联网产品设计">物联网产品设计</a></h4>
+    <div class="author">
+            </div>
+    <p class="intro">联网的恒温控制器、健康监控设备和门禁展示了物联网能够（将会）让人们与周围的世界如何互动。但是，为消费者设计互联...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1691" title="SQL经典实例">
+        <img src="http://file.ituring.com.cn/SmallCover/010026a49297a9bbd4f7" alt="SQL经典实例">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1691" title="SQL经典实例">SQL经典实例</a></h4>
+    <div class="author">
+            </div>
+    <p class="intro">写给数据库开发人员，一本书穷尽SQL的基础与高级技术。...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1694" title="末日之旅：全球气候变暖现场直击">
+        <img src="http://file.ituring.com.cn/SmallCover/0100aa58a2e1b53daced" alt="末日之旅：全球气候变暖现场直击">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1694" title="末日之旅：全球气候变暖现场直击">末日之旅：全球气候变暖现场直击</a></h4>
+    <div class="author">
+            </div>
+    <p class="intro">本书是对受全球气候变暖影响的南北极、赤道等地进行探访的记录，以北极圈阿拉斯加（北极村、巴罗、卡克托维克）、加拿...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1697" title="黑客攻防技术宝典：移动应用篇">
+        <img src="http://file.ituring.com.cn/SmallCover/01005c69882309ab1ef8" alt="黑客攻防技术宝典：移动应用篇">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1697" title="黑客攻防技术宝典：移动应用篇">黑客攻防技术宝典：移动应用篇</a></h4>
+    <div class="author">
+            </div>
+    <p class="intro">本书由世界顶尖黑客打造，是目前第一本全面介绍移动应用安全问题的系统安全手册，书中细致地介绍了包括iOS、And...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1703" title="舌尖上的科学：口腹之乐何处来">
+        <img src="http://file.ituring.com.cn/SmallCover/0100a96a0374869a5f79" alt="舌尖上的科学：口腹之乐何处来">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1703" title="舌尖上的科学：口腹之乐何处来">舌尖上的科学：口腹之乐何处来</a></h4>
+    <div class="author">
+            </div>
+    <p class="intro">本书由甜、酸、咸、鲜、苦五味入手，通过味觉、嗅觉、触觉、听觉、视觉五感讲解联觉机制，从食品学、生理学、脑科学、...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1723" title="统计学习">
+        <img src="http://file.ituring.com.cn/SmallCover/0100d1234c18de8a7eee" alt="统计学习">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1723" title="统计学习">统计学习</a></h4>
+    <div class="author">
+            </div>
+    <p class="intro">本书全面系统地介绍了统计学习的主要方法，重点是基于稀疏的统计方法，这是目前机器学习和大数据处理的重要方法。具体...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1727" title="数据化管理的组织">
+        <img src="http://file.ituring.com.cn/SmallCover/0100a35caa1efeafadf5" alt="数据化管理的组织">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1727" title="数据化管理的组织">数据化管理的组织</a></h4>
+    <div class="author">
+            </div>
+    <p class="intro">What do you need to become a data-driven organization? ...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1733" title="精通Python数据科学">
+        <img src="http://file.ituring.com.cn/SmallCover/010043ceeb0145ef8c54" alt="精通Python数据科学">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1733" title="精通Python数据科学">精通Python数据科学</a></h4>
+    <div class="author">
+            </div>
+    <p class="intro">Manage data and perform linear algebra in Python
+
+Der...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1742" title="游戏编程权威指南：世嘉新人培训教材">
+        <img src="http://file.ituring.com.cn/SmallCover/0100a3a1d30951a27c53" alt="游戏编程权威指南：世嘉新人培训教材">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1742" title="游戏编程权威指南：世嘉新人培训教材">游戏编程权威指南：世嘉新人培训教材</a></h4>
+    <div class="author">
+            <span>
+平山尚                    &nbsp;
+            </span>
+                    <span>
+<a href="/space/161988">罗水东</a>                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">本书带领读者从零开始独立完成一个机甲战士射击游戏。内容包含计算机图形（3DCG、2DCG、字体、光照、动画），...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1747" title="设计冲刺">
+        <img src="http://file.ituring.com.cn/SmallCover/01004291d938de3540cb" alt="设计冲刺">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1747" title="设计冲刺">设计冲刺</a></h4>
+    <div class="author">
+            <span>
+Richard Banfield                    &nbsp;
+C. Todd Lombardo                    &nbsp;
+Trace Wax                    &nbsp;
+            </span>
+            </div>
+    <p class="intro">Clarify the problem at hand, and identify the needs of ...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1764" title="设计师要懂沟通技巧：好想法不说出来也白搭">
+        <img src="http://file.ituring.com.cn/SmallCover/0100801c4c7118dda689" alt="设计师要懂沟通技巧：好想法不说出来也白搭">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1764" title="设计师要懂沟通技巧：好想法不说出来也白搭">设计师要懂沟通技巧：好想法不说出来也白搭</a></h4>
+    <div class="author">
+            <span>
+Martina Schell                    &nbsp;
+James O&#39;Brien                    &nbsp;
+            </span>
+                    <span>
+杜春晓                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">his book identifies the 13 main challenges designers fa...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1767" title="利用Python开源工具分析恶意代码">
+        <img src="http://file.ituring.com.cn/SmallCover/01003d515b971c646e0e" alt="利用Python开源工具分析恶意代码">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1767" title="利用Python开源工具分析恶意代码">利用Python开源工具分析恶意代码</a></h4>
+    <div class="author">
+            <span>
+赵涏元                    &nbsp;
+崔祐硕                    &nbsp;
+李导炅                    &nbsp;
+郑智训                    &nbsp;
+            </span>
+                    <span>
+<a href="/space/122290">武传海</a>                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">恶意代码分析过程中，最重要的是掌握恶意代码的特征，此时需要灵活运用线上服务的快速分析数据和主要恶意代码的数据库...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1768" title="程序员领导力">
+        <img src="http://file.ituring.com.cn/SmallCover/0100f6a34e278698e8fa" alt="程序员领导力">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1768" title="程序员领导力">程序员领导力</a></h4>
+    <div class="author">
+            <span>
+정영훈                    &nbsp;
+            </span>
+                    <span>
+张翔                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">程序员未来必将成为中层管理人员，此时感到最力不从心的就是“领导力”。本书讲解了高级程序员、项目管理人员必须具备...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1769" title="Scratch算法">
+        <img src="http://file.ituring.com.cn/SmallCover/010004088e0db6046856" alt="Scratch算法">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1769" title="Scratch算法">Scratch算法</a></h4>
+    <div class="author">
+            <span>
+김종훈                    &nbsp;
+            </span>
+                    <span>
+<a href="/space/173905">张红艳</a>                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">本书讲解了中小学生也能轻松理解的算法，通过适当举例和分阶段介绍运行过程，帮助孩子准确理解算法概念。利用Scra...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1770" title="程序员的英语">
+        <img src="http://file.ituring.com.cn/SmallCover/01004f9542a46f25e89a" alt="程序员的英语">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1770" title="程序员的英语">程序员的英语</a></h4>
+    <div class="author">
+            <span>
+박재호                    &nbsp;
+이해영                    &nbsp;
+            </span>
+                    <span>
+颜廷连                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">本书旨在最大限度提高对开发人员来说最重要的读解能力，培养能够快速阅读英文报道等IT相关文档的基本技能。书中通过...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1771" title="这样编码才规范：128个编码好习惯">
+        <img src="http://file.ituring.com.cn/SmallCover/010052cdb625b52aabd7" alt="这样编码才规范：128个编码好习惯">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1771" title="这样编码才规范：128个编码好习惯">这样编码才规范：128个编码好习惯</a></h4>
+    <div class="author">
+            <span>
+朴晋锈                    &nbsp;
+            </span>
+                    <span>
+<a href="/space/173135">才璐</a>                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">本书通过16个大主题，收录了优秀程序员应当遵守的128项基本编码准则，涉及初期设计、间隔、缩进、标识符名称、运...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1774" title="Swift设计模式">
+        <img src="http://file.ituring.com.cn/SmallCover/010047dae5b91c6e0422" alt="Swift设计模式">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1774" title="Swift设计模式">Swift设计模式</a></h4>
+    <div class="author">
+            </div>
+    <p class="intro">his book shows you how to use Swift 2 to learn about 23...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1776" title="程序员创业指南">
+        <img src="http://file.ituring.com.cn/SmallCover/01007b8d6244223a4691" alt="程序员创业指南">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1776" title="程序员创业指南">程序员创业指南</a></h4>
+    <div class="author">
+            </div>
+    <p class="intro">This book is the &quot;Hello, World&quot; tutorial for building p...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1780" title="因果推理：偶然背后的逻辑和统计">
+        <img src="http://file.ituring.com.cn/SmallCover/0100ebeeb423210b0021" alt="因果推理：偶然背后的逻辑和统计">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1780" title="因果推理：偶然背后的逻辑和统计">因果推理：偶然背后的逻辑和统计</a></h4>
+    <div class="author">
+            <span>
+Samantha Kleinberg                    &nbsp;
+            </span>
+            </div>
+    <p class="intro">Can drinking coffee help people live longer? What makes...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1785" title="枕边算法书">
+        <img src="http://file.ituring.com.cn/SmallCover/01005f69a8e93548bf72" alt="枕边算法书">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1785" title="枕边算法书">枕边算法书</a></h4>
+    <div class="author">
+            <span>
+林栢濬                    &nbsp;
+            </span>
+                    <span>
+<a href="/space/126517">崔盛一</a>                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">本书第1章重点讲解各种常见算法，第2章主要介绍几种相对少见的算法，第3章和第4章将探究其他程序员编写的代码，从...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1914" title="R数据挖掘入门">
+        <img src="http://file.ituring.com.cn/SmallCover/0100ccbbec24020aafd8" alt="R数据挖掘入门">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1914" title="R数据挖掘入门">R数据挖掘入门</a></h4>
+    <div class="author">
+                    <span>
+朱建春                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">本书是数据挖掘的入门书。书中结合大量使用了R的算法例题，详细介绍了数据挖掘的理论和分析方法。全书分为3部分：第...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1915" title="Python机器学习">
+        <img src="http://file.ituring.com.cn/SmallCover/010098702262672ca9f4" alt="Python机器学习">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1915" title="Python机器学习">Python机器学习</a></h4>
+    <div class="author">
+            <span>
+Sarah Guido                    &nbsp;
+            </span>
+            </div>
+    <p class="intro">Fundamental concepts and applications of machine learni...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1916" title="Java响应式编程">
+        <img src="http://file.ituring.com.cn/SmallCover/01002ac448ea208905cd" alt="Java响应式编程">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1916" title="Java响应式编程">Java响应式编程</a></h4>
+    <div class="author">
+            <span>
+Tomasz Nurkiewicz                    &nbsp;
+            </span>
+            </div>
+    <p class="intro">Write programs that react to multiple asynchronous sour...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1917" title="硬技能：程序员生存指南">
+        <img src="http://file.ituring.com.cn/SmallCover/0100b951ca370324ea39" alt="硬技能：程序员生存指南">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1917" title="硬技能：程序员生存指南">硬技能：程序员生存指南</a></h4>
+    <div class="author">
+            <span>
+Gregory Brown                    &nbsp;
+            </span>
+            </div>
+    <p class="intro">Using prototypes to explore project ideas
+Spotting hid...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1918" title="微服务：灵活的软件架构">
+        <img src="http://file.ituring.com.cn/SmallCover/010068441eeb06dd2c60" alt="微服务：灵活的软件架构">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1918" title="微服务：灵活的软件架构">微服务：灵活的软件架构</a></h4>
+    <div class="author">
+            <span>
+Eberhard Wolff                    &nbsp;
+            </span>
+            </div>
+    <p class="intro">Discover what microservices are, and how they differ fr...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1919" title="Python数据分析精要">
+        <img src="http://file.ituring.com.cn/SmallCover/0100ec5cc6bdfe048829" alt="Python数据分析精要">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1919" title="Python数据分析精要">Python数据分析精要</a></h4>
+    <div class="author">
+            <span>
+Dmitry Zinoviev                    &nbsp;
+            </span>
+            </div>
+    <p class="intro">This one-stop solution covers essential Python, databas...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1920" title="JavaScript测试驱动开发">
+        <img src="http://file.ituring.com.cn/SmallCover/0100e252624f2aac5286" alt="JavaScript测试驱动开发">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1920" title="JavaScript测试驱动开发">JavaScript测试驱动开发</a></h4>
+    <div class="author">
+            <span>
+Venkat Subramaniam                    &nbsp;
+            </span>
+            </div>
+    <p class="intro">Debunk the myth that JavaScript is not easily testable....</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1922" title="G1 GC的算法和实现">
+        <img src="http://file.ituring.com.cn/SmallCover/0100c1bfadc53e54fcbd" alt="G1 GC的算法和实现">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1922" title="G1 GC的算法和实现">G1 GC的算法和实现</a></h4>
+    <div class="author">
+            <span>
+中村成洋                    &nbsp;
+            </span>
+            </div>
+    <p class="intro">本书分为“算法篇”和“实现篇”两大部分。算法篇介绍了G1 GC的概要、并发标记、疏散、软实时性和分代式G1模式...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1923" title="编程的原则：程序员一生受用的101个编程智慧">
+        <img src="http://file.ituring.com.cn/SmallCover/0100ef4325903a5dc589" alt="编程的原则：程序员一生受用的101个编程智慧">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1923" title="编程的原则：程序员一生受用的101个编程智慧">编程的原则：程序员一生受用的101个编程智慧</a></h4>
+    <div class="author">
+            <span>
+上田勳                    &nbsp;
+            </span>
+                    <span>
+支鹏浩                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">尚且还算会编程的你，是否有过这样的苦恼：代码难读、慢、总出错、写好的代码一经修正就无法运行，等等，总之就是“写...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1925" title="单核工作法图解：事多到事少，拖延变高效">
+        <img src="http://file.ituring.com.cn/SmallCover/17098be970d82e6e1702" alt="单核工作法图解：事多到事少，拖延变高效">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1925" title="单核工作法图解：事多到事少，拖延变高效">单核工作法图解：事多到事少，拖延变高效</a></h4>
+    <div class="author">
+            <span>
+Staffan Noteberg                    &nbsp;
+            </span>
+                    <span>
+<a href="/space/41">大胖</a>                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">本书的主题是管理时间，战胜拖延。作者通过自身多年的经验，首创了一套简单、灵活而又强大的单核工作法，能行之有效地...</p>
+
+    
+</div>
+
+							</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="nav-tab-secondary">
+				<div class="PagedList-pager"><ul><li class="PagedList-skipToPrevious"><a href="/book?tab=book&amp;sort=hot&amp;page=50">上一页</a></li><li class="PagedList-skipToFirst"><a href="/book?tab=book&amp;sort=hot&amp;page=0">1</a></li><li class="PagedList-ellipses"><span>...</span></li><li class="PagedList-skipToPage"><a href="/book?tab=book&amp;sort=hot&amp;page=48">49</a></li><li class="PagedList-skipToPage"><a href="/book?tab=book&amp;sort=hot&amp;page=49">50</a></li><li class="PagedList-skipToPage"><a href="/book?tab=book&amp;sort=hot&amp;page=50">51</a></li><li class="PagedList-disabled PagedList-currentPage PagedList-skipToPage"><a>52</a></li><li class="PagedList-skipToPage"><a href="/book?tab=book&amp;sort=hot&amp;page=52">53</a></li><li class="PagedList-skipToNext"><a href="/book?tab=book&amp;sort=hot&amp;page=52">下一页</a></li></ul></div>
+			</div>
+
+		</div>
+
+		<div class="col-md-3 col-sm-3 side">
+
+            <ul class="sidenav-list">
+                    <li class="sidenav-major active">
+                        <a href="/book?tab=book">所有图书</a>
+                    </li>
+                    <li class="sidenav-major ">
+                        <a href="/book?tab=ebook">电子书</a>
+                    </li>
+                    <li class="sidenav-major ">
+                        <a href="/book?tab=free">免费</a>
+                    </li>
+                    <li class="sidenav-major ">
+                        <a href="/book?tab=translator">诚征译者</a>
+                    </li>
+                    <li class="sidenav-major ">
+                        <a href="/book?tab=soon">即将上市</a>
+                    </li>
+                    <li class="sidenav-major ">
+                        <a href="/book?tab=90vote">90天内推荐</a>
+                    </li>
+                    <li class="sidenav-major ">
+                        <a href="/book?tab=fav">收藏夹</a>
+                    </li>
+                    <li class="sidenav-major ">
+                        <a href="/book?tab=gift">可兑换图书</a>
+                    </li>
+            </ul>
+
+			
+
+<ul class="sidenav-list">
+
+    <li class="sidenav-header active">
+        <a href="/book?tab=book&amp;sort=hot">
+            <h3>所有分类</h3>
+        </a>
+    </li>
+
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=1">
+                    <span></span> 计算机
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=16">
+                    <span></span> 科普
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=44">
+                    <span></span> 设计
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=97">
+                    <span></span> 经管
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=103">
+                    <span></span> 生活自助
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=108">
+                    <span></span> 心理学
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=113">
+                    <span></span> 电工电子
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=140">
+                    <span></span> 高等数学
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=217">
+                    <span></span> 文艺
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=236">
+                    <span></span> 体育
+                </a>
+            </li>
+</ul>
+
+
+		</div>
+	</div>
+</div>
+
+
+    <div id="footer">
+        
+    </div>
+    <div id="toTop">
+        <a href="#" class="ryi-angle-up"></a>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $('#footer').load('/editablearea/show?name=Footer');
+            $('#banner-btn-search').click(function () {
+                var q = $('input[name=q]').val();
+                if (q) {
+                    location.href = '/search?q=' + q;
+                } else {
+                    $('input[name=q]').attr('placeholder', '请输入您感兴趣的');
+                }
+            })
+        })
+        function confirmDelete() {
+            return confirm('确认删除？');
+        }
+
+        function scollToId(id) {
+            $('html, body').animate({
+                scrollTop: $(id).offset().top - 70
+            }, 200);
+        }
+        strHost = document.location.hostname;
+        if ((strHost.indexOf('ituring.com.cn') + strHost.indexOf('turingbook.com')) > -2) {
+            // google analytics begin
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-25520517-1']);
+            _gaq.push(['_setDomainName', 'none']);
+            _gaq.push(['_setAllowLinker', true]);
+            _gaq.push(['_trackPageview']);
+
+            (function () {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+            // google analytics end
+        };
+    </script>
+    
+    
+</body>
+</html>

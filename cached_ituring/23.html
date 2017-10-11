@@ -1,0 +1,709 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>图书-图灵社区</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="/staticitr/img/favicon.png">
+
+    
+    <link href="/kendo/css?v=W-IyudFsjvr8DmczNaEtVDAWVVWkoAYhOkQl_7kkbqc1" rel="stylesheet"/>
+
+    <link href="/ituring/css?v=1FvBDzoX9ABj_s-YRXtEDHfLQWqLB4sk2tBMjZoSKVA1" rel="stylesheet"/>
+
+
+    <script src="/ituring/js?v=20qhuba-JjWpkUZ6WyvMzCPWFrB_TrAdbOFot0ehZMw1"></script>
+
+    <script src="/bundles/kendo?v=Ep7XxB9YaQz_sUggoppp1nXkei68VOq0u3sLcOISbsE1"></script>
+
+    <!--[if lt IE 9]>
+        <script src="/staticitr/lib/bootstrap/3.3.7/ie/html5shiv.min.js"></script>
+        <script src="/staticitr/lib/bootstrap/3.3.7/ie/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="layout-head">
+                                <div class="container">
+                                    <div id="navbar-toggles" class="navbar-toggles">
+                                        <a href="#nav-main" class="toggle-main ryi-nav-sandwich"></a>
+                                    </div>
+                                    <a id="head-navbar-toggle" href="#" class="head-navbar-toggle"></a>
+                                    <div class="head-logo"><a href="/">图灵社区</a></div>
+                                    <ul id="head-nav-primary" class="head-nav">
+                                        <li class="head-nav-home"><a href="/">首页</a></li>
+                                        <li><a href="/book">图书</a></li>
+                                        <li><a href="/article">文章</a></li>
+                                        <li class="head-search">
+                                            <form action="/search">
+                                                <input type="search" name="q" placeholder="技术改变世界 阅读塑造人生" class="key">
+                                                <button class="go btn btn-link"><span class="fa fa-search"></span></button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                    <ul id="head-nav-secondary" class="head-nav">
+                                        <li class="head-compose"><a href="http://account.ituring.com.cn/register?returnUrl=http%3a%2f%2fwww.ituring.com.cn%2fbook%3ftab%3dbook%26sort%3dhot%26page%3d23%26user-agent%3dMozilla%252F5.0%2b%2528Macintosh%253B%2bIntel%2bMac%2bOS%2bX%2b10_12_6%2529%2bAppleWebKit%252F604.1.38%2b%2528KHTML%252C%2blike%2bGecko%2529%2bVersion%252F11.0%2bSafari%252F604.1.38">新会员注册</a></li>
+                                        <li class="head-compose"><a href="http://account.ituring.com.cn/log-in?returnUrl=http%3a%2f%2fwww.ituring.com.cn%2fbook%3ftab%3dbook%26sort%3dhot%26page%3d23%26user-agent%3dMozilla%252F5.0%2b%2528Macintosh%253B%2bIntel%2bMac%2bOS%2bX%2b10_12_6%2529%2bAppleWebKit%252F604.1.38%2b%2528KHTML%252C%2blike%2bGecko%2529%2bVersion%252F11.0%2bSafari%252F604.1.38">登录</a></li>
+                                        <div class="navbar-close"><a href="#nav-user" class="fa fa-angle-up"></a></div>
+                                    </ul>
+                                </div>
+    </div>
+
+
+    
+
+
+<div class="container">
+
+    
+    <div class="editable-area">
+        <div class="block hot-tags hidden-xs hidden-xm">
+    <span class="tags">
+        <a href="/tag/49" tagid="49" class="post-tag">Android</a>
+        <a href="/tag/11" tagid="11" class="post-tag">Python</a>
+        <a href="/tag/6" tagid="6" class="post-tag">JavaScript</a>
+        <a href="/tag/238" tagid="238" class="post-tag">HTML5</a>
+        <a href="/tag/25" tagid="25" class="post-tag">Linux</a>
+        <a href="/tag/35" tagid="35" class="post-tag">C#</a>
+        <a href="/tag/367" tagid="367" class="post-tag">iOS</a>
+        <a href="/tag/283" tagid="283" class="post-tag">jQuery</a>
+        <a href="/tag/90" tagid="90" class="post-tag">数据库</a>
+        <a href="/tag/69" tagid="69" class="post-tag">机器学习</a>
+    </span>
+</div>
+    </div>
+
+
+
+	<div class="row g-50" id="tab-book">
+
+		<div class="col-md-9 col-sm-9 main">
+			<div class="nav-tab-primary">
+				<ul class="nav nav-tabs">
+                        <li >
+                            <a href="/book?tab=book&amp;sort=new">最新</a>
+                        </li>
+                        <li   class="active"    >
+                            <a href="/book?tab=book&amp;sort=hot">热门</a>
+                        </li>
+                        <li >
+                            <a href="/book?tab=book&amp;sort=vote">推荐</a>
+                        </li>
+				    <li class="pull-right"><a href="/search/advanced">图书高级搜索</a></li>
+				</ul>
+			</div>
+
+			<div class="g-main">
+				<div class="block-books block-books-grid">
+					<ul>
+							<li>
+								<div class="book-img">
+    <a href="/book/1663" title="2015图灵图书目录（非技术）">
+        <img src="http://file.ituring.com.cn/SmallCover/0100fd413ed548663bd5" alt="2015图灵图书目录（非技术）">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1663" title="2015图灵图书目录（非技术）">2015图灵图书目录（非技术）</a></h4>
+    <div class="author">
+            </div>
+    <p class="intro">推荐重点科技、社科、少儿图书。...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1367" title="2014图灵图书目录">
+        <img src="http://file.ituring.com.cn/SmallCover/01005ce8c2bc4c2ec10f" alt="2014图灵图书目录">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1367" title="2014图灵图书目录">2014图灵图书目录</a></h4>
+    <div class="author">
+            <span>
+图灵教育                    &nbsp;
+            </span>
+            </div>
+    <p class="intro">您可以通过订阅“图灵快讯”了解更多图灵图书信息。订阅地址：http://t.cn/8F7vNX1...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1266" title="逆向工程核心原理 ">
+        <img src="http://file.ituring.com.cn/SmallCover/01005717f0d88385294d" alt="逆向工程核心原理 ">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1266" title="逆向工程核心原理 ">逆向工程核心原理 </a></h4>
+    <div class="author">
+            <span>
+李承远                    &nbsp;
+            </span>
+                    <span>
+<a href="/space/122290">武传海</a>                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro"> 本书通过50多章的内容十分详尽地介绍了逆向工程核心原理。书中不仅包括作者以自己在Ahnlab研究所（AhnL...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1198" title="精通ASP.NET 4.5（第5版）">
+        <img src="http://file.ituring.com.cn/SmallCover/010050b985cef81110de" alt="精通ASP.NET 4.5（第5版）">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1198" title="精通ASP.NET 4.5（第5版）">精通ASP.NET 4.5（第5版）</a></h4>
+    <div class="author">
+            <span>
+Adam Freeman                    &nbsp;
+Matthew MacDonald                    &nbsp;
+Mario Szpuszta                    &nbsp;
+            </span>
+                    <span>
+<a href="/space/91438">石华耀</a>                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">本书是ASP.NET 领域的鸿篇巨制，全面讲解了ASP.NET 4 的各种特性及其背后的工作原理，并给出了许多...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1384" title="极客好父亲：适合爸爸和孩子一起做的极客项目和活动">
+        <img src="http://file.ituring.com.cn/SmallCover/0100718e5f79e56f82f5" alt="极客好父亲：适合爸爸和孩子一起做的极客项目和活动">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1384" title="极客好父亲：适合爸爸和孩子一起做的极客项目和活动">极客好父亲：适合爸爸和孩子一起做的极客项目和活动</a></h4>
+    <div class="author">
+            <span>
+［美］肯&#183;丹米德（Ken Denmead）                    &nbsp;
+            </span>
+                    <span>
+邝健威                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">
+许多当初伴随着电子计算机、《星球大战》之类电影、“龙与地下城”之类游戏成长起来的男孩，现在也有了自己的孩子...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1364" title="iOS开发指南：从零基础到App Store上架（第2版）">
+        <img src="http://file.ituring.com.cn/SmallCover/01007b21ad1bf3d975d8" alt="iOS开发指南：从零基础到App Store上架（第2版）">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1364" title="iOS开发指南：从零基础到App Store上架（第2版）">iOS开发指南：从零基础到App Store上架（第2版）</a></h4>
+    <div class="author">
+            <span>
+<a href="/space/99229">关东升</a>                    &nbsp;
+            </span>
+            </div>
+    <p class="intro">本书采用全新的iOS 7 API，详细介绍了iOS 7相关的知识点。本书共分为4个部分：第一部分为基础篇，介绍...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/879" title="软件故事：谁发明了那些经典的编程语言">
+        <img src="http://file.ituring.com.cn/SmallCover/01012dac510c11181b65" alt="软件故事：谁发明了那些经典的编程语言">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/879" title="软件故事：谁发明了那些经典的编程语言">软件故事：谁发明了那些经典的编程语言</a></h4>
+    <div class="author">
+            <span>
+史蒂夫•洛尔                    &nbsp;
+            </span>
+                    <span>
+张沛玄                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">聆听软件行业发展的精彩故事
+领悟软件巨擘的深邃思想
+放飞想象力，通过编码改变世界
+...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1032" title="好设计不简单Ⅱ：UI设计师必须了解的那些事">
+        <img src="http://file.ituring.com.cn/SmallCover/01001a63ae99eb148022" alt="好设计不简单Ⅱ：UI设计师必须了解的那些事">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1032" title="好设计不简单Ⅱ：UI设计师必须了解的那些事">好设计不简单Ⅱ：UI设计师必须了解的那些事</a></h4>
+    <div class="author">
+            <span>
+古贺直树                    &nbsp;
+            </span>
+                    <span>
+张君艳                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">本书作者根据多年的从业经验，剖析用户的心理，从饮水机、门把手等日常生活中的常见物品出发，针对文字、图标、形状、...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1436" title="码农&#183;JavaScript第二季（第12期）">
+        <img src="http://file.ituring.com.cn/SmallCover/01001543c7b7a01cda56" alt="码农&#183;JavaScript第二季（第12期）">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1436" title="码农&#183;JavaScript第二季（第12期）">码农&#183;JavaScript第二季（第12期）</a></h4>
+    <div class="author">
+            <span>
+图灵社区出品                    &nbsp;
+            </span>
+            </div>
+    <p class="intro">【目录】
+前端开发技术的发展
+给JavaScript初学者的24条最佳实践
+JavaScript MVC...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1264" title="Erlang程序设计（第2版）">
+        <img src="http://file.ituring.com.cn/SmallCover/0100ed0096f99844e034" alt="Erlang程序设计（第2版）">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1264" title="Erlang程序设计（第2版）">Erlang程序设计（第2版）</a></h4>
+    <div class="author">
+            <span>
+Joe Armstrong                    &nbsp;
+            </span>
+                    <span>
+<a href="/space/99094">牛化成</a>                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">在多核、并发、分布为王的时代，谁将成为下一个主流编程语言？来自全世界的众多专家都认为，Erlang最有可能在竞...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1512" title="高效程序员的45个习惯：敏捷开发修炼之道（修订版）">
+        <img src="http://file.ituring.com.cn/SmallCover/0100f394d4a0aa3930fa" alt="高效程序员的45个习惯：敏捷开发修炼之道（修订版）">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1512" title="高效程序员的45个习惯：敏捷开发修炼之道（修订版）">高效程序员的45个习惯：敏捷开发修炼之道（修订版）</a></h4>
+    <div class="author">
+            <span>
+Venkat Subramaniam, Andy Hunt                    &nbsp;
+            </span>
+                    <span>
+钱安川                    &nbsp;
+郑柯                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">本书总结并生动地阐述了成为高效的开发人员所需具备的 45个习惯、思想观念和方法，涵盖了软件开发进程、编程和调试...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/893" title="黑客与设计：剖析设计之美的秘密">
+        <img src="http://file.ituring.com.cn/SmallCover/0101dce9541272b985d5" alt="黑客与设计：剖析设计之美的秘密">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/893" title="黑客与设计：剖析设计之美的秘密">黑客与设计：剖析设计之美的秘密</a></h4>
+    <div class="author">
+            <span>
+David Kadavy                    &nbsp;
+            </span>
+                    <span>
+苑永凯                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">黑客们崇尚分享，所以他们可以从相关社团及网上找到各种编程问题的解决方案，快速地完成开发项目。但是，对于设计，问...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/886" title="心理学达人迷">
+        <img src="http://file.ituring.com.cn/SmallCover/01011085d681bd83f656" alt="心理学达人迷">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/886" title="心理学达人迷">心理学达人迷</a></h4>
+    <div class="author">
+            <span>
+［美］亚当•卡什                    &nbsp;
+            </span>
+                    <span>
+郝富强                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">认识你自己，理解自己为什么会有那样的感受和行为！
+
+我们每个人都是一个心理学家，时刻都在试图理解自己和他人...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1284" title="TCP/IP网络编程">
+        <img src="http://file.ituring.com.cn/SmallCover/0100b27009f6ab3e9bd1" alt="TCP/IP网络编程">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1284" title="TCP/IP网络编程">TCP/IP网络编程</a></h4>
+    <div class="author">
+            <span>
+尹圣雨                    &nbsp;
+            </span>
+                    <span>
+<a href="/space/126561">金国哲</a>                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">
+第一部分主要介绍网络编程基础知识。此部分主要由Windows和Linux平台网络编程必备基础知识构成，不会...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1432" title="一个寻找作者的读者——阮一峰博客文集Ⅱ">
+        <img src="http://file.ituring.com.cn/SmallCover/01009436f93e952c1ebd" alt="一个寻找作者的读者——阮一峰博客文集Ⅱ">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1432" title="一个寻找作者的读者——阮一峰博客文集Ⅱ">一个寻找作者的读者——阮一峰博客文集Ⅱ</a></h4>
+    <div class="author">
+            <span>
+<a href="/space/53380">阮一峰</a>                    &nbsp;
+            </span>
+            </div>
+    <p class="intro">毋庸讳言，这本书对我个人的意义比较大，是成长的记录。但是，每一篇都是认真写的，而且涉及的内容很多，不乏趣味，想...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1340" title="iOS编程实战">
+        <img src="http://file.ituring.com.cn/SmallCover/0100cab13a599f2e60c2" alt="iOS编程实战">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1340" title="iOS编程实战">iOS编程实战</a></h4>
+    <div class="author">
+                    <span>
+美团移动                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">本书不是一本简单的基础教程或入门书籍，它教会读者用正确的方法来解决每个独特的问题，两位作者结合自己的实际开发经...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1416" title="Vim实用技巧 ">
+        <img src="http://file.ituring.com.cn/SmallCover/01003529deaa851aa481" alt="Vim实用技巧 ">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1416" title="Vim实用技巧 ">Vim实用技巧 </a></h4>
+    <div class="author">
+            <span>
+Drew Neil                    &nbsp;
+            </span>
+                    <span>
+杨源                    &nbsp;
+车文隆                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">Vim是程序员、网站开发人员及系统管理员的重要工具，其速度和效率令其他的文本编辑器难以望其项背。
+
+Vim...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/852" title="Java性能优化权威指南">
+        <img src="http://file.ituring.com.cn/SmallCover/0101f2982158c526a5bb" alt="Java性能优化权威指南">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/852" title="Java性能优化权威指南">Java性能优化权威指南</a></h4>
+    <div class="author">
+            <span>
+Charlie Hunt                    &nbsp;
+Binu John                    &nbsp;
+            </span>
+                    <span>
+<a href="/space/82091">柳飞</a>                    &nbsp;
+<a href="/space/90543">陆明刚</a>                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">本书由曾任职于Oracle/Sun的性能优化专家编写，系统而详细地讲解了性能优化的各个方面，帮助你学习Java...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1532" title="Oracle Database 12c性能优化攻略">
+        <img src="http://file.ituring.com.cn/SmallCover/010092e8eae30d7ffa6e" alt="Oracle Database 12c性能优化攻略">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1532" title="Oracle Database 12c性能优化攻略">Oracle Database 12c性能优化攻略</a></h4>
+    <div class="author">
+            <span>
+Sam Alapati                    &nbsp;
+Darl Kuhn                    &nbsp;
+Bill Padfield                    &nbsp;
+            </span>
+                    <span>
+<a href="/space/34622">朱浩波</a>                    &nbsp;
+                译
+            </span>
+    </div>
+    <p class="intro">性能优化是每个DBA说不出的痛，也是难点。本书针对此现状，围绕性能调优这一主线，由浅入深地介绍了常见的Orac...</p>
+
+    
+</div>
+
+							</li>
+							<li>
+								<div class="book-img">
+    <a href="/book/1275" title="流程的永恒之道：工作流及BPM技术的理论、规范、模式及最佳实践">
+        <img src="http://file.ituring.com.cn/SmallCover/0100290bf796d5e001ec" alt="流程的永恒之道：工作流及BPM技术的理论、规范、模式及最佳实践">
+    </a>
+</div>
+<div class="book-info">
+    <h4 class="name"><a href="/book/1275" title="流程的永恒之道：工作流及BPM技术的理论、规范、模式及最佳实践">流程的永恒之道：工作流及BPM技术的理论、规范、模式及最佳实践</a></h4>
+    <div class="author">
+            <span>
+<a href="/space/94766">辛鹏</a>                    &nbsp;
+<a href="/space/94765">荣浩</a>                    &nbsp;
+            </span>
+            </div>
+    <p class="intro">本书阐述了应用流程的三大永恒之道，即工作流技术永恒之道、BPM技术永恒之道、BPM治理永恒之道，以流程及流程管...</p>
+
+    
+</div>
+
+							</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="nav-tab-secondary">
+				<div class="PagedList-pager"><ul><li class="PagedList-skipToPrevious"><a href="/book?tab=book&amp;sort=hot&amp;page=22">上一页</a></li><li class="PagedList-skipToFirst"><a href="/book?tab=book&amp;sort=hot&amp;page=0">1</a></li><li class="PagedList-ellipses"><span>...</span></li><li class="PagedList-skipToPage"><a href="/book?tab=book&amp;sort=hot&amp;page=21">22</a></li><li class="PagedList-skipToPage"><a href="/book?tab=book&amp;sort=hot&amp;page=22">23</a></li><li class="PagedList-disabled PagedList-currentPage PagedList-skipToPage"><a>24</a></li><li class="PagedList-skipToPage"><a href="/book?tab=book&amp;sort=hot&amp;page=24">25</a></li><li class="PagedList-skipToPage"><a href="/book?tab=book&amp;sort=hot&amp;page=25">26</a></li><li class="PagedList-ellipses"><span>...</span></li><li class="PagedList-skipToLast"><a href="/book?tab=book&amp;sort=hot&amp;page=52">53</a></li><li class="PagedList-skipToNext"><a href="/book?tab=book&amp;sort=hot&amp;page=24">下一页</a></li></ul></div>
+			</div>
+
+		</div>
+
+		<div class="col-md-3 col-sm-3 side">
+
+            <ul class="sidenav-list">
+                    <li class="sidenav-major active">
+                        <a href="/book?tab=book">所有图书</a>
+                    </li>
+                    <li class="sidenav-major ">
+                        <a href="/book?tab=ebook">电子书</a>
+                    </li>
+                    <li class="sidenav-major ">
+                        <a href="/book?tab=free">免费</a>
+                    </li>
+                    <li class="sidenav-major ">
+                        <a href="/book?tab=translator">诚征译者</a>
+                    </li>
+                    <li class="sidenav-major ">
+                        <a href="/book?tab=soon">即将上市</a>
+                    </li>
+                    <li class="sidenav-major ">
+                        <a href="/book?tab=90vote">90天内推荐</a>
+                    </li>
+                    <li class="sidenav-major ">
+                        <a href="/book?tab=fav">收藏夹</a>
+                    </li>
+                    <li class="sidenav-major ">
+                        <a href="/book?tab=gift">可兑换图书</a>
+                    </li>
+            </ul>
+
+			
+
+<ul class="sidenav-list">
+
+    <li class="sidenav-header active">
+        <a href="/book?tab=book&amp;sort=hot">
+            <h3>所有分类</h3>
+        </a>
+    </li>
+
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=1">
+                    <span></span> 计算机
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=16">
+                    <span></span> 科普
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=44">
+                    <span></span> 设计
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=97">
+                    <span></span> 经管
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=103">
+                    <span></span> 生活自助
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=108">
+                    <span></span> 心理学
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=113">
+                    <span></span> 电工电子
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=140">
+                    <span></span> 高等数学
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=217">
+                    <span></span> 文艺
+                </a>
+            </li>
+            <li class="sidenav-major  ">
+                <a href="/book?tab=book&amp;sort=hot&amp;category=236">
+                    <span></span> 体育
+                </a>
+            </li>
+</ul>
+
+
+		</div>
+	</div>
+</div>
+
+
+    <div id="footer">
+        
+    </div>
+    <div id="toTop">
+        <a href="#" class="ryi-angle-up"></a>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $('#footer').load('/editablearea/show?name=Footer');
+            $('#banner-btn-search').click(function () {
+                var q = $('input[name=q]').val();
+                if (q) {
+                    location.href = '/search?q=' + q;
+                } else {
+                    $('input[name=q]').attr('placeholder', '请输入您感兴趣的');
+                }
+            })
+        })
+        function confirmDelete() {
+            return confirm('确认删除？');
+        }
+
+        function scollToId(id) {
+            $('html, body').animate({
+                scrollTop: $(id).offset().top - 70
+            }, 200);
+        }
+        strHost = document.location.hostname;
+        if ((strHost.indexOf('ituring.com.cn') + strHost.indexOf('turingbook.com')) > -2) {
+            // google analytics begin
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-25520517-1']);
+            _gaq.push(['_setDomainName', 'none']);
+            _gaq.push(['_setAllowLinker', true]);
+            _gaq.push(['_trackPageview']);
+
+            (function () {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+            // google analytics end
+        };
+    </script>
+    
+    
+</body>
+</html>
