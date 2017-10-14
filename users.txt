@@ -1,4 +1,0 @@
-{"username": "Tom","password_hash": "123"}
-{"username": "Jerry","password_hash": "123"}
-{"username": "Key","password_hash": "123"}
-{"username": "abc", "password_hash": 456}
