@@ -21,7 +21,7 @@
             <button type="submit">发表</button>
         </form>
         {% for topic in topic_list %}
-            <a href="{{ url_for('home.detail', id=topic.id) }}">{{ topic.topic }} BY {{ topic.user_id }}</a>
+            <a href="{{ url_for('home.detail', id=topic.id) }}">{{ topic.topic }} BY {{ topic.user().username }}</a>
             {% if topic.user_id == user.id %}
                 <button>删除</button>
             {% endif %}

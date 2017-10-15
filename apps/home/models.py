@@ -1,5 +1,7 @@
 import json
 
+from apps.auth.models import User
+
 
 class Topic:
     def __init__(self, id, topic, user_id):
@@ -11,6 +13,9 @@ class Topic:
         topic_json = json.dumps(self, default=lambda obj: obj.__dict__)
         with open('db/topics.txt', 'a', encoding='utf-8') as f:
             f.write(topic_json + '\n')
+
+    def user(self):
+        return User.find_by(id=self.user_id)[0]
 
     @classmethod
     def find_all(cls):
@@ -44,6 +49,9 @@ class Comment:
         comment_json = json.dumps(self, default=lambda obj: obj.__dict__)
         with open('db/comments.txt', 'a', encoding='utf-8') as f:
             f.write(comment_json + '\n')
+
+    def user(self):
+        return User.find_by(id=self.user_id)[0]
 
     @classmethod
     def find_all(cls):
