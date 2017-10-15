@@ -31,10 +31,12 @@ class User:
     @classmethod
     def find_by(cls, **kwargs):
         user_list = User.find_all()
+        users = []
         for k, v in kwargs.items():
             for user in user_list:
                 if getattr(user, k) == v:
-                    return user
+                    users.append(user)
+        return users
 
     @classmethod
     def find_all(cls):
@@ -43,6 +45,5 @@ class User:
             for line in f:
                 user_dict = json.loads(line)
                 user = User(**user_dict)
-                user.id = user_dict['id']
                 user_list.append(user)
             return user_list

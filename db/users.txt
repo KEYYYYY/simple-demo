@@ -1,2 +1,3 @@
 {"id": 1507969275, "username": "Jerry", "password_hash": "250cf8b51c773f3f8dc8b4be867a9a02"}
 {"id": 1507969363, "username": "Tom", "password_hash": "202cb962ac59075b964b07152d234b70"}
+{"id": 1507969592, "username": "Sam", "password_hash": "202cb962ac59075b964b07152d234b70"}

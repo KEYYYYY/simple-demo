@@ -12,7 +12,24 @@
     {% for message in get_flashed_messages() %}
         {{ message }}
     {% endfor %}
-    <h1>Hello</h1>
+    {% if user %}
+        <h1>Hello {{ user.username }}</h1>
+        <a href="{{ url_for('auth.logout') }}">注销</a>
+        <form method="POST">
+            <label for="topic">话题</label>
+            <input type="text" name="topic">
+            <button type="submit">发表</button>
+        </form>
+        {% for topic in topic_list %}
+            <a href="{{ url_for('home.detail', id=topic.id) }}">{{ topic.topic }} BY {{ topic.user_id }}</a>
+            {% if topic.user_id == user.id %}
+                <button>删除</button>
+            {% endif %}
+            <br>
+        {% endfor %}
+    {% else %}
+        <h1>请登陆</h1>
+    {% endif %}
 </body>
 
 </html>
