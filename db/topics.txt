@@ -1,6 +1,3 @@
-{"id": 1508034232, "topic": "Hello", "user_id": 1507969363}
-{"id": 1508034666, "topic": "\u4eca\u5929\u5929\u6c14\u771f\u597d", "user_id": 1507969363}
-{"id": 1508034732, "topic": "Tom \u4f60\u597d", "user_id": 1507969275}
-{"id": 1508034757, "topic": "\u6211\u53ebJerry", "user_id": 1507969275}
-{"id": 1508042074, "topic": "\u4e0b\u96e8\u4e86", "user_id": 1507969363}
-{"id": 1508045225, "topic": "Good", "user_id": 1507969363}
+{"id": 1508167003, "topic": "Hello", "user_id": 1507969363, "board_id": "1"}
+{"id": 1508167578, "topic": "jsfuck", "user_id": 1507969363, "board_id": "2"}
+{"id": 1508167585, "topic": "golfing", "user_id": 1507969363, "board_id": "3"}

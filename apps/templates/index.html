@@ -18,10 +18,17 @@
         <form method="POST">
             <label for="topic">话题</label>
             <input type="text" name="topic">
+            <select name="board">
+                <option value="1">Python</option>
+                <option value="2">JavaScript</option>
+                <option value="3">Go</option>
+            </select>
             <button type="submit">发表</button>
         </form>
         {% for topic in topic_list %}
-            <a href="{{ url_for('home.detail', id=topic.id) }}">{{ topic.topic }} BY {{ topic.user().username }}</a>
+            <a href="{{ url_for('home.detail', id=topic.id) }}">
+                {{ topic.topic }} BY {{ topic.user().username }} AT {{ topic.board().name }}
+            </a>
             {% if topic.user_id == user.id %}
                 <button>删除</button>
             {% endif %}

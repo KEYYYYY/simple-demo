@@ -14,7 +14,12 @@ def index():
         topic_list = Topic.find_all()
         return render_template('index.html', user=user, topic_list=topic_list)
     if request.method == 'POST':
-        Topic(int(time()), request.form['topic'], user.id).save()
+        Topic(
+            int(time()),
+            request.form['topic'],
+            user.id,
+            request.form['board']
+        ).save()
         return redirect(url_for('home.index'))
 
 
