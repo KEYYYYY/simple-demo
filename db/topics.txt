@@ -1,3 +1,4 @@
 {"id": 1508167003, "topic": "Hello", "user_id": 1507969363, "board_id": "1"}
 {"id": 1508167578, "topic": "jsfuck", "user_id": 1507969363, "board_id": "2"}
 {"id": 1508167585, "topic": "golfing", "user_id": 1507969363, "board_id": "3"}
+{"id": 1508167812, "topic": "Hello Go", "user_id": 1507969363, "board_id": "3"}

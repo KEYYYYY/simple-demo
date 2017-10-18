@@ -14,6 +14,10 @@
     {% endfor %}
     {% if user %}
         <h1>Hello {{ user.username }}</h1>
+        <form action="{{ url_for('home.upload_avatar') }}" method="POST" enctype="multipart/form-data">
+            <input type="file" name="avatar">
+            <input type="submit" value="上传头像">
+        </form>
         <a href="{{ url_for('auth.logout') }}">注销</a>
         <form method="POST">
             <label for="topic">话题</label>
@@ -25,18 +29,58 @@
             </select>
             <button type="submit">发表</button>
         </form>
-        {% for topic in topic_list %}
-            <a href="{{ url_for('home.detail', id=topic.id) }}">
-                {{ topic.topic }} BY {{ topic.user().username }} AT {{ topic.board().name }}
-            </a>
-            {% if topic.user_id == user.id %}
-                <button>删除</button>
-            {% endif %}
-            <br>
-        {% endfor %}
+        <button id="board-all">所有</button>
+        <button id="board-python">Python相关</button>
+        <button id="board-javascript">JavaScript相关</button>
+        <button id="board-go">Go相关</button>
+        <div id="content">
+            {% for topic in topic_list %}
+                <a href="{{ url_for('home.detail', id=topic.id) }}">
+                    {{ topic.topic }} BY {{ topic.user().username }} AT {{ topic.board().name }}
+                </a>
+                {% if topic.user_id == user.id %}
+                    <button>删除</button>
+                {% endif %}
+                <br>
+            {% endfor %}
+        </div>
     {% else %}
         <h1>请登陆</h1>
     {% endif %}
+    <script>
+        // ajax函数
+        var ajax = function (method, path, data, responseCallback) {
+            var r = new XMLHttpRequest()
+            r.open(method, path, true)
+            r.onreadystatechange = function () {
+                if (r.readyState === 4) {
+                    responseCallback(r.response)
+                }
+            }
+            data = JSON.stringify(data)
+            r.send(data)
+        }
+
+        // 模版函数
+        var template = function () {
+            return '<p>Hello</p>'
+        }
+
+        // 给按钮注册ajax事件
+        var bindToBtn = function () {
+            var btnPython = document.querySelector('#board-python')
+            btnPython.addEventListener('click', function () {
+                ajax('GET', '/api/topics/1', {}, function (response) {
+                    var content = document.querySelector('#content')
+                    topics = JSON.parse(response)
+                    console.log(topics)
+                    content.innerHTML = template()
+                })
+            })
+        }
+
+        bindToBtn()
+    </script>
 </body>
 
 </html>

@@ -1,10 +1,13 @@
+import os
 from time import time
 
-from flask import redirect, render_template, request, url_for
+from flask import redirect, render_template, request, url_for, jsonify
+from werkzeug import secure_filename
 
 from apps.auth.views import current_user
 from apps.home import home_blueprint
-from apps.home.models import Topic, Comment
+from apps.home.utils import check_upload
+from apps.home.models import Topic, Comment, Board
 
 
 @home_blueprint.route('/', methods=['GET', 'POST'])
@@ -37,3 +40,22 @@ def detail(id):
         content = request.form['content']
         Comment(int(time()), topic[0].id, current_user().id, content).save()
         return redirect(url_for('home.detail', id=topic[0].id))
+
+
+@home_blueprint.route('/api/topics/<int:board_id>')
+def topic(board_id):
+    topic_list = Board.find_by(id=str(board_id))[0].topics()
+    return jsonify({
+        'topics': [topic.to_json() for topic in topic_list],
+    })
+
+
+@home_blueprint.route('/upload/', methods=['POST'])
+def upload_avatar():
+    avatar_file = request.files['avatar']
+    filename = secure_filename(avatar_file.filename)
+    if check_upload(filename):
+        print(filename)
+        path = os.path.join(os.getcwd(), 'uploads/avatars/' + filename)
+        avatar_file.save(path)
+    return redirect(url_for('home.index'))

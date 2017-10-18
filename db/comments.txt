@@ -1,3 +1,4 @@
 {"id": 1508044162, "topic_id": 1508034232, "user_id": 1507969363, "content": "\u4f60\u597d"}
 {"id": 1508044414, "topic_id": 1508034232, "user_id": 1507969363, "content": "\u54c8\u54c8\u54c8"}
 {"id": 1508045260, "topic_id": 1508034757, "user_id": 1507969275, "content": "\u74dc\u76ae"}
+{"id": 1508167821, "topic_id": 1508167812, "user_id": 1507969363, "content": "jsfuck"}

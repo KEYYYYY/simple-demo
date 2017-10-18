@@ -41,6 +41,9 @@ class Topic:
                     topics.append(topic)
         return topics
 
+    def to_json(self):
+        return json.dumps(self, default=lambda obj: obj.__dict__)
+
 
 class Comment:
     def __init__(self, id, topic_id, user_id, content):
