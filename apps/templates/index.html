@@ -13,6 +13,7 @@
         {{ message }}
     {% endfor %}
     {% if user %}
+        <img src="{{ url_for('home.avatar', file_name=user.avatar) }}" alt="头像">
         <h1>Hello {{ user.username }}</h1>
         <form action="{{ url_for('home.upload_avatar') }}" method="POST" enctype="multipart/form-data">
             <input type="file" name="avatar">

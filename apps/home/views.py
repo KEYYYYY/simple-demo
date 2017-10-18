@@ -1,13 +1,14 @@
 import os
 from time import time
 
-from flask import redirect, render_template, request, url_for, jsonify
+from flask import (current_app, jsonify, redirect, render_template, request,
+                   url_for, send_from_directory)
 from werkzeug import secure_filename
 
 from apps.auth.views import current_user
 from apps.home import home_blueprint
+from apps.home.models import Board, Comment, Topic
 from apps.home.utils import check_upload
-from apps.home.models import Topic, Comment, Board
 
 
 @home_blueprint.route('/', methods=['GET', 'POST'])
@@ -53,9 +54,19 @@ def topic(board_id):
 @home_blueprint.route('/upload/', methods=['POST'])
 def upload_avatar():
     avatar_file = request.files['avatar']
-    filename = secure_filename(avatar_file.filename)
-    if check_upload(filename):
-        print(filename)
-        path = os.path.join(os.getcwd(), 'uploads/avatars/' + filename)
+    # 转义文件名使其安全
+    file_name = secure_filename(avatar_file.filename)
+    # 判断文件格式是否符合要求
+    if check_upload(file_name):
+        path = os.path.join(current_app.config['UPLOAD_FOLDER'], file_name)
         avatar_file.save(path)
+        user = current_user()
+        user.avatar = file_name
+        user.save()
     return redirect(url_for('home.index'))
+
+
+@home_blueprint.route('/avatars/<file_name>/')
+def avatar(file_name):
+    with open(current_app.config['UPLOAD_FOLDER'] + file_name, 'rb') as f:
+        return f.read()

@@ -4,10 +4,11 @@ import time
 
 
 class User:
-    def __init__(self, id, username, password_hash):
+    def __init__(self, id, username, password_hash, avatar):
         self.id = id
         self.username = username
         self.password_hash = password_hash
+        self.avatar = avatar
 
     def save(self):
         user_json = json.dumps(self, default=lambda obj: obj.__dict__)
