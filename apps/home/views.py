@@ -2,7 +2,7 @@ import os
 from time import time
 
 from flask import (current_app, jsonify, redirect, render_template, request,
-                   url_for, send_from_directory)
+                   url_for)
 from werkzeug import secure_filename
 
 from apps.auth.views import current_user
