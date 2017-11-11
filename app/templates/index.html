@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    {% if user_form.errors %}
+        {{ user_form.errors }}
+    {% endif %}
+    <h1>个人信息</h1>
+    {% if avatar_url %}
+        <img src="{{ avatar_url }}">
+    {% endif %}
+    <form method="POST" enctype="multipart/form-data">
+        {{ user_form.csrf_token }}
+        {{ user_form.username.label }}
+        {{ user_form.username }}
+        <br>
+        {{ user_form.avatar.label }}
+        {{ user_form.avatar }}
+        <br>
+        {{ user_form.submit }}
+    </form>
+</body>
+
+</html>

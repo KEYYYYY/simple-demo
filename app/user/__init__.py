@@ -2,4 +2,4 @@ from flask import Blueprint
 
 user_blueprint = Blueprint('user', __name__)
 
-from apps.user import views
+from app.user import views
