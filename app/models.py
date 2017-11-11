@@ -8,6 +8,7 @@ class User(db.Model):
     username = db.Column(db.String(128), nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     avatar = db.Column(db.String(64))
+    avatar_t = db.Column(db.String(64))
 
     @property
     def password(self):
