@@ -4,3 +4,5 @@ config.py
 uploads/
 db.sqlite3
 uploads/
+xadmin/
+media/
