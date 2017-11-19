@@ -13,13 +13,24 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from app import settings
 from django.views.static import serve
 import xadmin
 
+from goods.views import GoodsProfileView
+
 urlpatterns = [
     url(r'^admin/', xadmin.site.urls),
-    url(r'^media/(?P<path>.*)$', serve,
-        {'document_root': settings.MEDIA_ROOT}),
+    url(
+        r'^media/(?P<path>.*)$',
+        serve,
+        {'document_root': settings.MEDIA_ROOT}
+    ),
+    # 登陆url
+    url(
+        r'^api-auth/',
+        include('rest_framework.urls', namespace='rest_framework')
+    ),
+    url(r'^goods/', GoodsProfileView.as_view(), name='goods_profile_all'),
 ]
