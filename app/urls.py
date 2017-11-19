@@ -17,8 +17,14 @@ from django.conf.urls import url, include
 from app import settings
 from django.views.static import serve
 import xadmin
+from rest_framework.routers import DefaultRouter
 
-from goods.views import GoodsProfileView
+from goods.views import GoodsProfileViewSet
+
+router = DefaultRouter()
+
+# 配置GoodsProfile的url
+router.register(r'goods', GoodsProfileViewSet)
 
 urlpatterns = [
     url(r'^admin/', xadmin.site.urls),
@@ -32,5 +38,5 @@ urlpatterns = [
         r'^api-auth/',
         include('rest_framework.urls', namespace='rest_framework')
     ),
-    url(r'^goods/', GoodsProfileView.as_view(), name='goods_profile_all'),
+    url(r'^', include(router.urls)),
 ]
