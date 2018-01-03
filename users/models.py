@@ -11,6 +11,13 @@ class UserProfile(AbstractUser):
         default='M',
         verbose_name='性别'
     )
+    identity = models.CharField(
+        max_length=1,
+        choices=(('S', '学生'), ('T', '老师')),
+        default='S',
+        verbose_name='身份'
+    )
+    relations = models.ManyToManyField('UserProfile', verbose_name='关系')
 
     class Meta:
         verbose_name = '用户'

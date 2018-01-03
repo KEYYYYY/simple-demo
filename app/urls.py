@@ -16,10 +16,12 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.views.static import serve
 from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken import views
 
 import xadmin
 from app import settings
-from goods.views import GoodsProfileViewSet, CategoryViewSet, index
+from goods.views import CategoryViewSet, GoodsProfileViewSet
+from users.views import LoginView
 
 router = DefaultRouter()
 
@@ -34,11 +36,13 @@ urlpatterns = [
         serve,
         {'document_root': settings.MEDIA_ROOT}
     ),
-    # 登陆url
+    # Rest登陆url
     url(
         r'^api-auth/',
         include('rest_framework.urls', namespace='rest_framework')
     ),
+    # 获取token的url
+    url(r'^api-token-auth/', views.obtain_auth_token),
     url(r'^', include(router.urls)),
-    url(r'^index/', index, name='index'),
+    url(r'^login/', LoginView.as_view(), name='login'),
 ]

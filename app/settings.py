@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'rest_framework',
+    'rest_framework.authtoken',
     'django_filters',
 ]
 
@@ -125,6 +126,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
 # 配置上传文件的根路径
 MEDIA_ROOT = 'media/'
 # 配置media路由的前缀

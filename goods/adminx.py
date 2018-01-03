@@ -1,13 +1,11 @@
 import xadmin
+from goods.models import Category, GoodsProfile
 from xadmin import views
-
-from goods.models import GoodsProfile, Category
 
 
 class GlobalSetting:
     site_title = '后台管理系统'
     site_footer = '史振涛'
-    menu_style = 'accordion'
 
 
 class GoodsProfileAdmin:

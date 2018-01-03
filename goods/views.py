@@ -2,7 +2,6 @@ from rest_framework import mixins
 from rest_framework import viewsets
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
-from django.shortcuts import render
 
 from goods.models import GoodsProfile, Category
 from goods.serializer import GoodsProfileSerializer, CategorySerializer
@@ -28,7 +27,3 @@ class CategoryViewSet(mixins.ListModelMixin,
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-
-
-def index(request):
-    return render(request, 'index.html')
