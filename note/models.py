@@ -28,7 +28,8 @@ class Note(models.Model):
 
 class NoteBook(models.Model):
     name = models.CharField(max_length=128, verbose_name='名称')
-    author = models.ForeignKey('auth.User', related_name='notebooks')
+    author = models.ForeignKey(
+        'auth.User', related_name='notebooks', verbose_name='作者')
     add_time = models.DateTimeField(default=datetime.now, verbose_name='添加时间')
     private = models.BooleanField(default=True, verbose_name='是否私有')
 
