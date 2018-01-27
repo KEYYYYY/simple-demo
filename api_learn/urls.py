@@ -16,20 +16,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.documentation import include_docs_urls
-from rest_framework.routers import SimpleRouter
+from rest_framework.routers import DefaultRouter
 from rest_framework_jwt.views import obtain_jwt_token
 
 from rest_learn import views
 
-router = SimpleRouter()
+router = DefaultRouter()
 router.register('goods', views.GoodsViewSet)
 router.register('categorys', views.CategoryViewSet)
 router.register('codes', views.CodeViewSet, base_name='codes')
+router.register('users', views.UserViewSet, base_name='users')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('docs/', include_docs_urls(title='Hello')),
-    path('', include(router.urls)),
+    path('docs/', include_docs_urls(title='')),
     path('login/', obtain_jwt_token),
+    path('', include(router.urls)),
 ]
