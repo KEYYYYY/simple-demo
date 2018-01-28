@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta
 
-from rest_framework import serializers
 from django.contrib.auth.models import User
+from rest_framework import serializers
 
-from .models import Goods, Category, UserProfile, Code
+from .models import Category, Code, Favorite, Goods, GoodsImage, UserProfile
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -12,8 +12,15 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class GoodsImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GoodsImage
+        fields = ('image',)
+
+
 class GoodsSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
+    images = GoodsImageSerializer(many=True)
 
     class Meta:
         model = Goods
@@ -64,3 +71,13 @@ class UserRegSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'password', 'mobile', 'code')
+
+
+class UserFavSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+
+    class Meta:
+        model = Favorite
+        fields = '__all__'

@@ -1,21 +1,22 @@
 from random import randint
 
-from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth.models import User
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins, status, viewsets
-from rest_framework import permissions
 from rest_framework.filters import OrderingFilter, SearchFilter
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .filters import GoodsFilter
-from .models import Category, Code, Goods, UserProfile
+from .models import Category, Code, Favorite, Goods, UserProfile
+from .permissions import IsOwner
 from .serializers import (CategorySerializer, CodeSerializer, GoodsSerializer,
-                          UserRegSerializer)
+                          UserFavSerializer, UserRegSerializer)
 
 
 class GoodsViewSet(viewsets.ModelViewSet):
     """
-    返回所有商品信息
+    商品信息接口
     """
     queryset = Goods.objects.all()
     serializer_class = GoodsSerializer
@@ -23,12 +24,11 @@ class GoodsViewSet(viewsets.ModelViewSet):
     filter_class = GoodsFilter
     search_fields = ('name', 'category__name')
     ordering_fields = ('add_time', 'update_time', 'price')
-    permission_classes = (permissions.IsAuthenticated,)
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
     """
-    返回所有类别的信息
+    商品类别类别接口
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -68,3 +68,14 @@ class UserViewSet(viewsets.GenericViewSet,
             password=password
         )
         UserProfile.objects.create(user=user, mobile=mobile)
+
+
+class UserFavViewSet(viewsets.ModelViewSet):
+    """
+    用户收藏接口
+    """
+    serializer_class = UserFavSerializer
+    permission_classes = (IsAuthenticated, IsOwner)
+
+    def get_queryset(self):
+        return Favorite.objects.filter(user=self.request.user)

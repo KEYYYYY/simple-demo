@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 
 
 class UserProfile(models.Model):
@@ -59,3 +59,36 @@ class Code(models.Model):
 
     def __str__(self):
         return self.code
+
+
+class GoodsImage(models.Model):
+    goods = models.ForeignKey(
+        Goods, on_delete=models.CASCADE,
+        related_name='images', verbose_name='商品名称'
+    )
+    image = models.ImageField(
+        upload_to='media/goods_images/', verbose_name='轮播图')
+    add_time = models.DateTimeField(auto_now_add=True)
+    update_time = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = '商品轮播图'
+        verbose_name_plural = verbose_name
+
+    def __str(self):
+        return self.goods.name
+
+
+class Favorite(models.Model):
+    goods = models.ForeignKey(
+        Goods, on_delete=models.CASCADE, verbose_name='商品'
+    )
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name='用户'
+    )
+    add_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = '用户收藏'
+        verbose_name_plural = verbose_name
+        unique_together = ('goods', 'user')
