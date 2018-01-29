@@ -31,7 +31,7 @@ router.register('users-fav', views.UserFavViewSet, base_name='users-fav')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('docs/', include_docs_urls(title='')),
+    path('docs/', include_docs_urls(title='测试')),
     path('login/', obtain_jwt_token),
     path('', include(router.urls)),
 ]

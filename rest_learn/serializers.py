@@ -7,18 +7,27 @@ from .models import Category, Code, Favorite, Goods, GoodsImage, UserProfile
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    """
+    商品类别序列化类
+    """
     class Meta:
         model = Category
         fields = '__all__'
 
 
 class GoodsImageSerializer(serializers.ModelSerializer):
+    """
+    商品图片序列化类
+    """
     class Meta:
         model = GoodsImage
         fields = ('image',)
 
 
 class GoodsSerializer(serializers.ModelSerializer):
+    """
+    商品序列化类
+    """
     category = CategorySerializer()
     images = GoodsImageSerializer(many=True)
 
@@ -28,7 +37,13 @@ class GoodsSerializer(serializers.ModelSerializer):
 
 
 class CodeSerializer(serializers.Serializer):
-    mobile = serializers.CharField(required=True, min_length=11, max_length=11)
+    """
+    验证码序列化类
+    """
+    mobile = serializers.CharField(
+        required=True, min_length=11, max_length=11,
+        help_text='电话号码'
+    )
 
     def validate_mobile(self, mobile):
         """
@@ -50,11 +65,23 @@ class CodeSerializer(serializers.Serializer):
 
 
 class UserRegSerializer(serializers.ModelSerializer):
+    """
+    用户注册序列化类
+    """
+    username = serializers.CharField(
+        read_only=True,
+    )
     code = serializers.CharField(
-        write_only=True, required=True, min_length=6, max_length=6)
-    mobile = serializers.CharField(min_length=11, max_length=11)
+        write_only=True, required=True, min_length=6, max_length=6,
+        help_text='验证码'
+    )
+    mobile = serializers.CharField(
+        write_only=True, min_length=11, max_length=11,
+        help_text='电话号码'
+    )
     password = serializers.CharField(
-        write_only=True, min_length=3, max_length=32)
+        write_only=True, min_length=3, max_length=32
+    )
 
     def validate_code(self, code):
         last_code = Code.objects.filter(
@@ -68,12 +95,44 @@ class UserRegSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('验证码不正确')
         return code
 
+    def create(self, validated_data):
+        username = validated_data['username']
+        password = validated_data['password']
+        mobile = validated_data['mobile']
+        user = User.objects.create_user(
+            username=username,
+            password=password
+        )
+        UserProfile.objects.create(user=user, mobile=mobile)
+        return user
+
+    def validate(self, attrs):
+        attrs['username'] = attrs['mobile']
+        return attrs
+
     class Meta:
         model = User
-        fields = ('username', 'password', 'mobile', 'code')
+        fields = ('username', 'mobile', 'password', 'code')
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ('mobile',)
+
+
+class UserDetailSerializer(serializers.ModelSerializer):
+    userprofile = UserProfileSerializer()
+
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'userprofile')
 
 
 class UserFavSerializer(serializers.ModelSerializer):
+    """
+    用户收藏序列化类
+    """
     user = serializers.HiddenField(
         default=serializers.CurrentUserDefault()
     )
