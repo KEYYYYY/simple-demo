@@ -27,6 +27,9 @@ router.register('categorys', views.CategoryViewSet)
 router.register('codes', views.CodeViewSet, base_name='codes')
 router.register('users', views.UserViewSet, base_name='users')
 router.register('users-fav', views.UserFavViewSet, base_name='users-fav')
+router.register(
+    'users-address', views.AddressViewSet, base_name='users-address'
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

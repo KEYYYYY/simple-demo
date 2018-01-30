@@ -1,5 +1,5 @@
 from rest_framework import pagination
 
 
-class GoodsPagination(pagination.PageNumberPagination):
+class GenericPagination(pagination.PageNumberPagination):
     page_size = 3

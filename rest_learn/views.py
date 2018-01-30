@@ -6,12 +6,13 @@ from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.response import Response
 
 from .filters import GoodsFilter
-from .models import Category, Code, Favorite, Goods, User
-from .paginations import GoodsPagination
+from .models import Category, Code, Favorite, Goods, User, UserAddress
+from .paginations import GenericPagination
 from .permissions import IsOwner
-from .serializers import (CategorySerializer, CodeSerializer, GoodsSerializer,
-                          UserDetailSerializer, UserFavSerializer,
-                          UserRegSerializer)
+from .serializers import (AddressSerializer, CategorySerializer,
+                          CodeSerializer, GoodsSerializer,
+                          UserDetailSerializer, UserFavDetailSerializer,
+                          UserFavSerializer, UserRegSerializer)
 
 
 class GoodsViewSet(viewsets.GenericViewSet,
@@ -25,7 +26,7 @@ class GoodsViewSet(viewsets.GenericViewSet,
     """
     queryset = Goods.objects.all()
     serializer_class = GoodsSerializer
-    pagination_class = GoodsPagination
+    pagination_class = GenericPagination
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
     filter_class = GoodsFilter
     search_fields = ('name', 'category__name')
@@ -63,7 +64,8 @@ class CodeViewSet(viewsets.GenericViewSet,
 
 class UserViewSet(viewsets.GenericViewSet,
                   mixins.RetrieveModelMixin,
-                  mixins.CreateModelMixin):
+                  mixins.CreateModelMixin,
+                  mixins.UpdateModelMixin):
     """
     create:
         用户注册
@@ -95,6 +97,7 @@ class UserViewSet(viewsets.GenericViewSet,
 
 
 class UserFavViewSet(viewsets.GenericViewSet,
+                     mixins.ListModelMixin,
                      mixins.CreateModelMixin,
                      mixins.RetrieveModelMixin,
                      mixins.DestroyModelMixin):
@@ -105,11 +108,42 @@ class UserFavViewSet(viewsets.GenericViewSet,
         为当前用户创建一个收藏项
     destory:
         删除当前用户的一个收藏项
+    retrieve:
+        得到当前用户是否收藏该商品
     """
-    serializer_class = UserFavSerializer
     permission_classes = (permissions.IsAuthenticated, IsOwner)
     # 在get_queryset之后作用
     lookup_field = 'goods_id'
+    pagination_class = GenericPagination
+
+    # 创建、删除收藏只需要提供商品ID和用户ID
+    # 得到收藏列表需要得到商品的详细情况
+    # 所以动态设置序列化类
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return UserFavDetailSerializer
+        else:
+            return UserFavSerializer
 
     def get_queryset(self):
         return Favorite.objects.filter(user=self.request.user)
+
+
+class AddressViewSet(viewsets.ModelViewSet):
+    """
+    list:
+        得到该用户的所有收货地址
+    create:
+        增加收货地址
+    update:
+        更新收货地址
+    delete:
+        删除收货地址
+    retrieve:
+        得到某个收货地址详情
+    """
+    permissions_classes = (permissions.IsAuthenticated, IsOwner)
+    serializer_class = AddressSerializer
+
+    def get_queryset(self):
+        return UserAddress.objects.filter(user=self.request.user)

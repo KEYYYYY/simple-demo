@@ -3,13 +3,21 @@ from datetime import datetime, timedelta
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from .models import Category, Code, Favorite, Goods, GoodsImage, UserProfile
+from .models import (Category, Code, Favorite, Goods, GoodsImage, UserAddress,
+                     UserProfile)
 
 
 class CategorySerializer(serializers.ModelSerializer):
     """
     商品类别序列化类
     """
+    add_time = serializers.DateTimeField(
+        read_only=True, format='%Y-%m-%d %H:%M'
+    )
+    update_time = serializers.DateTimeField(
+        read_only=True, format='%Y-%m-%d %H:%M'
+    )
+
     class Meta:
         model = Category
         fields = '__all__'
@@ -30,6 +38,12 @@ class GoodsSerializer(serializers.ModelSerializer):
     """
     category = CategorySerializer()
     images = GoodsImageSerializer(many=True)
+    add_time = serializers.DateTimeField(
+        read_only=True, format='%Y-%m-%d %H:%M'
+    )
+    update_time = serializers.DateTimeField(
+        read_only=True, format='%Y-%m-%d %H:%M'
+    )
 
     class Meta:
         model = Goods
@@ -116,17 +130,32 @@ class UserRegSerializer(serializers.ModelSerializer):
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
+    """
+    用户信息序列化类
+    """
     class Meta:
         model = UserProfile
         fields = ('mobile',)
 
 
 class UserDetailSerializer(serializers.ModelSerializer):
+    """
+    用户详情序列化类
+    """
     userprofile = UserProfileSerializer()
 
     class Meta:
         model = User
         fields = ('id', 'username', 'userprofile')
+
+    # 当字段内包含其他序列化类的时候需要自定义update
+    def update(self, instance, validated_data):
+        profile = instance.userprofile
+        instance.username = validated_data['username']
+        profile.mobile = validated_data['userprofile']['mobile']
+        instance.save()
+        profile.save()
+        return instance
 
 
 class UserFavSerializer(serializers.ModelSerializer):
@@ -139,4 +168,31 @@ class UserFavSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Favorite
+        fields = '__all__'
+
+
+class UserFavDetailSerializer(serializers.ModelSerializer):
+    """
+    用户收藏详情序列化类
+    """
+    goods = GoodsSerializer()
+
+    class Meta:
+        model = Favorite
+        fields = ('id', 'goods')
+
+
+class AddressSerializer(serializers.ModelSerializer):
+    """
+    用户收货地址序列化类
+    """
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+    add_time = serializers.DateTimeField(
+        format='%Y-%m-%d %H:%M', read_only=True
+    )
+
+    class Meta:
+        model = UserAddress
         fields = '__all__'
