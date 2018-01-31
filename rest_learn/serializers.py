@@ -294,3 +294,25 @@ class OrderSerializer(serializers.ModelSerializer):
         order.order_mount = order_mount
         order.save(update_fields=('order_mount',))
         return order
+
+
+class OrderGoodsSerializer(serializers.ModelSerializer):
+    """
+    订单商品序列化类
+    """
+    goods = GoodsSerializer()
+
+    class Meta:
+        model = OrderGoods
+        fields = ('goods', 'nums')
+
+
+class OrderDetailSerializer(serializers.ModelSerializer):
+    """
+    订单详情序列化类
+    """
+    order_goods = OrderGoodsSerializer(many=True)
+
+    class Meta:
+        model = Order
+        fields = '__all__'

@@ -14,7 +14,7 @@ from .serializers import (AddressSerializer, CategorySerializer,
                           CodeSerializer, GoodsSerializer, OrderSerializer,
                           ShoppingItemDetailSerializer, ShoppingItemSerializer,
                           UserDetailSerializer, UserFavDetailSerializer,
-                          UserFavSerializer, UserRegSerializer)
+                          UserFavSerializer, UserRegSerializer, OrderDetailSerializer)
 
 
 class GoodsViewSet(viewsets.GenericViewSet,
@@ -179,7 +179,8 @@ class ShoppingCartViewSet(viewsets.ModelViewSet):
 class OrderViewSet(viewsets.GenericViewSet,
                    mixins.CreateModelMixin,
                    mixins.DestroyModelMixin,
-                   mixins.ListModelMixin):
+                   mixins.ListModelMixin,
+                   mixins.RetrieveModelMixin):
     """
     list:
         得到该用户的所有订单
@@ -187,9 +188,18 @@ class OrderViewSet(viewsets.GenericViewSet,
         创建一个订单
     delete:
         删除一个订单
+    retrieve:
+        获取一个订单的详细
     """
     permissions_classes = (permissions.IsAuthenticated, IsOwner)
-    serializer_class = OrderSerializer
+
+    # retrieve的时候需要详细的商品列表
+    # 所以动态设置序列化类
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return OrderDetailSerializer
+        else:
+            return OrderSerializer
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)

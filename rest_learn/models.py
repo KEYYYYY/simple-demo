@@ -170,6 +170,7 @@ class Order(models.Model):
 class OrderGoods(models.Model):
     order = models.ForeignKey(
         Order, on_delete=models.CASCADE, verbose_name='订单',
+        related_name='order_goods',
     )
     goods = models.ForeignKey(
         Goods, on_delete=models.SET_NULL, null=True,
