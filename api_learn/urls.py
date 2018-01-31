@@ -28,7 +28,13 @@ router.register('codes', views.CodeViewSet, base_name='codes')
 router.register('users', views.UserViewSet, base_name='users')
 router.register('users-fav', views.UserFavViewSet, base_name='users-fav')
 router.register(
+    'users-shopping', views.ShoppingCartViewSet, base_name='users-shopping'
+)
+router.register(
     'users-address', views.AddressViewSet, base_name='users-address'
+)
+router.register(
+    'users-orders', views.OrderViewSet, base_name='users-orders'
 )
 
 urlpatterns = [

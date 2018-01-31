@@ -116,3 +116,69 @@ class UserAddress(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class ShoppingItem(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name='用户'
+    )
+    goods = models.ForeignKey(
+        Goods, on_delete=models.CASCADE, verbose_name='商品'
+    )
+    nums = models.IntegerField(default=1, verbose_name='数量')
+    add_time = models.DateTimeField(auto_now_add=True, verbose_name='添加时间')
+
+    class Meta:
+        verbose_name = '购物车项'
+        verbose_name_plural = verbose_name
+        ordering = ('-add_time',)
+        unique_together = ('user', 'goods')
+
+    def __str__(self):
+        return self.goods.name
+
+
+class Order(models.Model):
+    STATUS = (('w', '待支付'), ('r', '已支付'))
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name='用户',
+    )
+    sn = models.CharField(
+        null=True, max_length=32, verbose_name='订单号',
+    )
+    # 这里不推荐使用外键指向一个地址
+    # 因为用户可能在提交订单后修改了自己的地址
+    # 会造成订单数据变动
+    address = models.CharField(
+        max_length=256, verbose_name='配送地址',
+    )
+    status = models.CharField(
+        max_length=1, choices=STATUS, default='w',
+        verbose_name='支付状态',
+    )
+    order_mount = models.FloatField(
+        default=0, verbose_name='订单金额'
+    )
+    add_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = '订单'
+        verbose_name_plural = verbose_name
+        ordering = ('-add_time',)
+
+
+class OrderGoods(models.Model):
+    order = models.ForeignKey(
+        Order, on_delete=models.CASCADE, verbose_name='订单',
+    )
+    goods = models.ForeignKey(
+        Goods, on_delete=models.SET_NULL, null=True,
+        verbose_name='商品',
+    )
+    nums = models.IntegerField(
+        verbose_name='商品数量',
+    )
+
+    class Meta:
+        verbose_name = '订单商品'
+        verbose_name_plural = verbose_name

@@ -1,10 +1,12 @@
 from datetime import datetime, timedelta
+from time import strftime
 
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from .models import (Category, Code, Favorite, Goods, GoodsImage, UserAddress,
-                     UserProfile)
+                     UserProfile, ShoppingItem, Order, OrderGoods)
+from utils import defaults
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -142,6 +144,9 @@ class UserDetailSerializer(serializers.ModelSerializer):
     """
     用户详情序列化类
     """
+    id = serializers.HiddenField(
+        default=defaults.CurrentUserIDDefault(),
+    )
     userprofile = UserProfileSerializer()
 
     class Meta:
@@ -196,3 +201,96 @@ class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserAddress
         fields = '__all__'
+
+
+class ShoppingItemSerializer(serializers.ModelSerializer):
+    """
+    购物车商品项目序列化类
+    """
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+    nums = serializers.IntegerField(
+        min_value=1
+    )
+    is_from_cart = serializers.BooleanField(
+        write_only=True, default=False,
+        help_text='是否从购物车中操作',
+    )
+
+    # 不删除额外字段创建会出错
+    def create(self, validated_data):
+        del validated_data['is_from_cart']
+        return super(ShoppingItemSerializer, self).create(validated_data)
+
+    def update(self, instance, validated_data):
+        instance.user = self.context['request'].user
+        instance.goods_id = validated_data['goods']
+        if validated_data['is_from_cart']:
+            instance.nums = validated_data['nums']
+        else:
+            instance.nums += validated_data['nums']
+        instance.save()
+        return instance
+
+    class Meta:
+        model = ShoppingItem
+        fields = '__all__'
+
+
+class ShoppingItemDetailSerializer(serializers.ModelSerializer):
+    """
+    购物车项目详情序列化类
+    """
+    goods = GoodsSerializer()
+
+    class Meta:
+        model = ShoppingItem
+        fields = '__all__'
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    """
+    订单序列化类
+    """
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+    add_time = serializers.DateTimeField(
+        read_only=True,
+        format='%Y-%m-%d %H:%M',
+    )
+
+    class Meta:
+        model = Order
+        fields = '__all__'
+        read_only_fields = ('status', 'sn', 'order_mount')
+
+    def create(self, validated_data):
+        from random import randint
+        shopping_items = ShoppingItem.objects.filter(
+            user=self.context['request'].user
+        )
+        # 生成订单号
+        sn = '{time}{user_id}{random_str}'.format(
+            time=strftime('%Y%m%d%H%M%S'),
+            user_id=self.context['request'].user.id,
+            random_str=str(randint(1000, 4000))
+        )
+        validated_data['sn'] = sn
+        order = Order.objects.create(**validated_data)
+        order_mount = 0
+        # 遍历购物车每一个项目，设置订单物品项目
+        for shopping_item in shopping_items:
+            order_goods = OrderGoods()
+            order_goods.goods = shopping_item.goods
+            order_goods.order = order
+            order_goods.nums = shopping_item.nums
+            # 计算订单金额
+            order_mount += shopping_item.nums * shopping_item.goods.price
+            order_goods.save()
+            # 从购物车清除
+            shopping_item.delete()
+        order.order_mount = order_mount
+        order.save(update_fields=('order_mount',))
+        return order

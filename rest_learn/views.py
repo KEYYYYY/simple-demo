@@ -6,11 +6,13 @@ from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.response import Response
 
 from .filters import GoodsFilter
-from .models import Category, Code, Favorite, Goods, User, UserAddress
+from .models import (Category, Code, Favorite, Goods, Order, ShoppingItem,
+                     User, UserAddress)
 from .paginations import GenericPagination
 from .permissions import IsOwner
 from .serializers import (AddressSerializer, CategorySerializer,
-                          CodeSerializer, GoodsSerializer,
+                          CodeSerializer, GoodsSerializer, OrderSerializer,
+                          ShoppingItemDetailSerializer, ShoppingItemSerializer,
                           UserDetailSerializer, UserFavDetailSerializer,
                           UserFavSerializer, UserRegSerializer)
 
@@ -147,3 +149,47 @@ class AddressViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return UserAddress.objects.filter(user=self.request.user)
+
+
+class ShoppingCartViewSet(viewsets.ModelViewSet):
+    """
+    list:
+        得到该用户的所有购物车货物
+    create:
+        增加一个商品
+    update:
+        更新商品数量
+    delete:
+        删除购物车商品
+    retrieve:
+        得到商品详情
+    """
+    permissions_classes = (permissions.IsAuthenticated, IsOwner)
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return ShoppingItemDetailSerializer
+        else:
+            return ShoppingItemSerializer
+
+    def get_queryset(self):
+        return ShoppingItem.objects.filter(user=self.request.user)
+
+
+class OrderViewSet(viewsets.GenericViewSet,
+                   mixins.CreateModelMixin,
+                   mixins.DestroyModelMixin,
+                   mixins.ListModelMixin):
+    """
+    list:
+        得到该用户的所有订单
+    create:
+        创建一个订单
+    delete:
+        删除一个订单
+    """
+    permissions_classes = (permissions.IsAuthenticated, IsOwner)
+    serializer_class = OrderSerializer
+
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
