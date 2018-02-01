@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from .models import (Category, Code, Favorite, Goods, GoodsImage, UserAddress,
-                     UserProfile, ShoppingItem, Order, OrderGoods)
+                     UserProfile, ShoppingItem, Order, OrderGoods, Banner)
 from utils import defaults
 
 
@@ -315,4 +315,13 @@ class OrderDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
+        fields = '__all__'
+
+
+class BannerSerializer(serializers.ModelSerializer):
+    """
+    轮播图序列化类
+    """
+    class Meta:
+        model = Banner
         fields = '__all__'

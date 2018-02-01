@@ -7,14 +7,15 @@ from rest_framework.response import Response
 
 from .filters import GoodsFilter
 from .models import (Category, Code, Favorite, Goods, Order, ShoppingItem,
-                     User, UserAddress)
+                     User, UserAddress, Banner)
 from .paginations import GenericPagination
 from .permissions import IsOwner
 from .serializers import (AddressSerializer, CategorySerializer,
-                          CodeSerializer, GoodsSerializer, OrderSerializer,
+                          CodeSerializer, GoodsSerializer,
+                          OrderDetailSerializer, OrderSerializer,
                           ShoppingItemDetailSerializer, ShoppingItemSerializer,
                           UserDetailSerializer, UserFavDetailSerializer,
-                          UserFavSerializer, UserRegSerializer, OrderDetailSerializer)
+                          UserFavSerializer, UserRegSerializer, BannerSerializer)
 
 
 class GoodsViewSet(viewsets.GenericViewSet,
@@ -144,7 +145,7 @@ class AddressViewSet(viewsets.ModelViewSet):
     retrieve:
         得到某个收货地址详情
     """
-    permissions_classes = (permissions.IsAuthenticated, IsOwner)
+    permission_classes = (permissions.IsAuthenticated, IsOwner)
     serializer_class = AddressSerializer
 
     def get_queryset(self):
@@ -164,7 +165,7 @@ class ShoppingCartViewSet(viewsets.ModelViewSet):
     retrieve:
         得到商品详情
     """
-    permissions_classes = (permissions.IsAuthenticated, IsOwner)
+    permission_classes = (permissions.IsAuthenticated, IsOwner)
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -191,7 +192,7 @@ class OrderViewSet(viewsets.GenericViewSet,
     retrieve:
         获取一个订单的详细
     """
-    permissions_classes = (permissions.IsAuthenticated, IsOwner)
+    permission_classes = (permissions.IsAuthenticated, IsOwner)
 
     # retrieve的时候需要详细的商品列表
     # 所以动态设置序列化类
@@ -203,3 +204,13 @@ class OrderViewSet(viewsets.GenericViewSet,
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
+
+
+class BannerViewSet(viewsets.GenericViewSet,
+                    mixins.ListModelMixin):
+    """
+    list:
+        得到所有的轮播图
+    """
+    serializer_class = BannerSerializer
+    queryset = Banner.objects.all()

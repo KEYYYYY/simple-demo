@@ -183,3 +183,25 @@ class OrderGoods(models.Model):
     class Meta:
         verbose_name = '订单商品'
         verbose_name_plural = verbose_name
+
+
+class Banner(models.Model):
+    """
+    轮播图模型
+    """
+    goods = models.ForeignKey(
+        Goods, on_delete=models.CASCADE, verbose_name='商品',
+    )
+    image = models.ImageField(
+        upload_to='media/banners', verbose_name='图片',
+    )
+    index = models.IntegerField(
+        default=0, verbose_name='顺序',
+    )
+    add_time = models.DateTimeField(
+        auto_now_add=True, verbose_name='添加时间',
+    )
+
+    class Meta:
+        verbose_name = '轮播图'
+        verbose_name_plural = verbose_name
