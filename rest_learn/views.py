@@ -4,18 +4,19 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins, permissions, status, viewsets
 from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.response import Response
+# from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
 
 from .filters import GoodsFilter
-from .models import (Category, Code, Favorite, Goods, Order, ShoppingItem,
-                     User, UserAddress, Banner)
+from .models import (Banner, Category, Code, Favorite, Goods, Order,
+                     ShoppingItem, User, UserAddress)
 from .paginations import GenericPagination
 from .permissions import IsOwner
-from .serializers import (AddressSerializer, CategorySerializer,
-                          CodeSerializer, GoodsSerializer,
+from .serializers import (AddressSerializer, BannerSerializer,
+                          CategorySerializer, CodeSerializer, GoodsSerializer,
                           OrderDetailSerializer, OrderSerializer,
                           ShoppingItemDetailSerializer, ShoppingItemSerializer,
                           UserDetailSerializer, UserFavDetailSerializer,
-                          UserFavSerializer, UserRegSerializer, BannerSerializer)
+                          UserFavSerializer, UserRegSerializer)
 
 
 class GoodsViewSet(viewsets.GenericViewSet,
@@ -27,6 +28,7 @@ class GoodsViewSet(viewsets.GenericViewSet,
     retrieve:
         获取某个商品详细信息
     """
+    # throttling_class = (AnonRateThrottle, UserRateThrottle)
     queryset = Goods.objects.all()
     serializer_class = GoodsSerializer
     pagination_class = GenericPagination
@@ -50,7 +52,7 @@ class CodeViewSet(viewsets.GenericViewSet,
                   mixins.CreateModelMixin):
     """
     create:
-        发送验证码接口
+        发送验证码
     """
     serializer_class = CodeSerializer
 

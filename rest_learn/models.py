@@ -36,6 +36,8 @@ class Goods(models.Model):
     )
     name = models.CharField(max_length=128, verbose_name='商品名称')
     price = models.FloatField(verbose_name='商品价格')
+    click_num = models.IntegerField(default=0, verbose_name='点击数')
+    # fav_num = models.IntegerField(default=0, verbose_name='收藏数')
     add_time = models.DateTimeField(auto_now_add=True, verbose_name='添加时间')
     update_time = models.DateTimeField(auto_now=True, verbose_name='更新时间')
 
